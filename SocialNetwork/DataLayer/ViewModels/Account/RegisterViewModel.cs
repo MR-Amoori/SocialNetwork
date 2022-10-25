@@ -4,6 +4,9 @@ namespace SocialNetwork.DataLayer.ViewModels.Account
 {
     public class RegisterViewModel
     {
+        [Key]
+        public int Id { get; set; }
+
         [Required]
         [StringLength(50)]
         public string UserName { get; set; }
@@ -13,14 +16,18 @@ namespace SocialNetwork.DataLayer.ViewModels.Account
         public string Email { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
-        [MaxLength(15)]
-        [MinLength(5, ErrorMessage = $"The field password must be a string with a minimum length of '5'.")]
-        public string password { get; set; }
+        [MaxLength(50)]
+        public string FullName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Compare(nameof(password))]
+        [MaxLength(15)]
+        [MinLength(5, ErrorMessage = $"The field Password must be a string with a minimum length of '5'.")]
+        public string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Compare(nameof(Password))]
         public string ConfrimPassword { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialNetwork.Context;
 
@@ -11,9 +12,10 @@ using SocialNetwork.Context;
 namespace SocialNetwork.Migrations
 {
     [DbContext(typeof(SocialContext))]
-    partial class SocialContextModelSnapshot : ModelSnapshot
+    [Migration("20221025131503_Update2-Tbl-User_Mig")]
+    partial class Update2TblUser_Mig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -371,6 +373,10 @@ namespace SocialNetwork.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<string>("ConfrimPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreateDateAccount")
                         .HasColumnType("datetime2");
 
@@ -403,21 +409,14 @@ namespace SocialNetwork.Migrations
 
             modelBuilder.Entity("SocialNetwork.DataLayer.ViewModels.Account.RegisterViewModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConfrimPassword")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
+                    b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -427,12 +426,7 @@ namespace SocialNetwork.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
+                    b.HasKey("Email");
 
                     b.ToTable("RegisterViewModel");
                 });

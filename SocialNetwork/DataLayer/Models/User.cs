@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace SocialNetwork.DataLayer.Models
 {
@@ -20,14 +19,13 @@ namespace SocialNetwork.DataLayer.Models
         [Required]
         [DataType(DataType.Password)]
         [MaxLength(15)]
-        [MinLength(5, ErrorMessage = $"The field password must be a string with a minimum length of '5'.")]
+        [MinLength(5, ErrorMessage = $"The field Password must be a string with a minimum length of '5'.")]
         public string Password { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string FullName { get; set; }
 
-        [AllowNull]
         [MaxLength(250)]
         public string Biography { get; set; }
 

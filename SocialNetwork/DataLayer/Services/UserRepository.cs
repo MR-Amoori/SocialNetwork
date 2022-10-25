@@ -18,7 +18,13 @@ namespace SocialNetwork.DataLayer.Services
         {
             try
             {
+                if (UserEmailExists(user.Email))
+                    return false;
+                if (UserNameExists(user.UserName))
+                    return false;
+
                 _context.Users.Add(user);
+
                 return true;
             }
             catch
@@ -45,7 +51,7 @@ namespace SocialNetwork.DataLayer.Services
         {
             try
             {
-                _context.Users.Remove(user);
+                _context.Users.FirstOrDefault(user).IsDeletedAccount = true;
                 return true;
             }
             catch
@@ -56,17 +62,22 @@ namespace SocialNetwork.DataLayer.Services
 
         public User GetUserByEmail(string email)
         {
-            return _context.Users.FirstOrDefault(u => u.Email == email);
+            return _context.Users.Where(u => u.IsDeletedAccount == false).FirstOrDefault(u => u.Email == email);
         }
 
         public User GetUserById(int userId)
         {
-            return _context.Users.FirstOrDefault(u => u.Id == userId);
+            return _context.Users.Where(u => u.IsDeletedAccount == false).FirstOrDefault(u => u.Id == userId);
         }
 
         public User GetUserByUsername(string username)
         {
-            return _context.Users.FirstOrDefault(u => u.UserName == username);
+            return _context.Users.Where(u => u.IsDeletedAccount == false).FirstOrDefault(u => u.UserName == username);
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
 
         public bool UpdateUser(User user)
@@ -84,17 +95,17 @@ namespace SocialNetwork.DataLayer.Services
 
         public bool UserEmailExists(string email)
         {
-            return _context.Users.Any(u => u.Email == email);
+            return _context.Users.Where(u => u.IsDeletedAccount == false).Any(u => u.Email == email);
         }
 
         public bool UserExists(int userId)
         {
-            return _context.Users.Any(u => u.Id == userId);
+            return _context.Users.Where(x => x.IsDeletedAccount == false).Any(u => u.Id == userId);
         }
 
         public bool UserNameExists(string username)
         {
-            return _context.Users.Any(u => u.UserName == username);
+            return _context.Users.Where(u => u.IsDeletedAccount == false).Any(u => u.UserName == username);
         }
     }
 }
