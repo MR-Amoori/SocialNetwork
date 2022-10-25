@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SocialNetwork.DataLayer.Models;
+using SocialNetwork.DataLayer.ViewModels.Account;
 
 
 namespace SocialNetwork.Context
@@ -26,5 +27,8 @@ namespace SocialNetwork.Context
 
             base.OnModelCreating(modelBuilder);
         }
+
+
+        public DbSet<SocialNetwork.DataLayer.ViewModels.Account.RegisterViewModel> RegisterViewModel { get; set; }
     }
 }

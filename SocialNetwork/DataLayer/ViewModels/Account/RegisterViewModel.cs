@@ -14,18 +14,13 @@ namespace SocialNetwork.DataLayer.ViewModels.Account
 
         [Required]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8}$",
-        ErrorMessage = "Password must meet requirements")]
         [MaxLength(15)]
-        [MinLength(5)]
+        [MinLength(5, ErrorMessage = $"The field password must be a string with a minimum length of '5'.")]
         public string password { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8}$",
-        ErrorMessage = "Password must meet requirements")]
-        [MaxLength(15)]
-        [MinLength(5)]
+        [Compare(nameof(password))]
         public string ConfrimPassword { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "V35kd8F9F009YhiW1nmDuI9a10LiMw+M0IE5m/uSQ1Q=",
+  "Hash": "L27h3lGSnfbK6xZESAdfETfoOGZI1kQ3W2DdVVTli58=",
   "Source": "SocialNetwork",
   "BasePath": "_content/SocialNetwork",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\Projects\\C#\\SocialNetwork\\SocialNetwork\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SocialNetwork.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\Projects\\C#\\SocialNetwork\\SocialNetwork\\wwwroot\\css\\Account\\Register.css",
+      "SourceId": "SocialNetwork",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\C#\\SocialNetwork\\SocialNetwork\\wwwroot\\",
+      "BasePath": "_content/SocialNetwork",
+      "RelativePath": "css/Account/Register.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Account\\Register.css"
     },
     {
       "Identity": "D:\\Projects\\C#\\SocialNetwork\\SocialNetwork\\wwwroot\\css\\site.css",

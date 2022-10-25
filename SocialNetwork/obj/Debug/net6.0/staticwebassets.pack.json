@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\SocialNetwork.bundle.scp.css"
     },
     {
+      "Id": "D:\\Projects\\C#\\SocialNetwork\\SocialNetwork\\wwwroot\\css\\Account\\Register.css",
+      "PackagePath": "staticwebassets\\css\\Account\\Register.css"
+    },
+    {
       "Id": "D:\\Projects\\C#\\SocialNetwork\\SocialNetwork\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
