@@ -19,8 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\SocialNetwork.DataLayer\SocialNetwork.DataLayer.csproj" />
-  </ItemGroup>
-
 </Project>

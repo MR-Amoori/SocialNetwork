@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SocialNetwork.Context;
+using SocialNetwork.DataLayer.Repositories;
+using SocialNetwork.DataLayer.Services;
 
 namespace SocialNetwork
 {
@@ -18,6 +20,12 @@ namespace SocialNetwork
                 .GetConnectionString("LocalHostConnection");
 
             builder.Services.AddDbContext<SocialContext>(x => x.UseSqlServer(connectionStringLocalHost));
+
+            #endregion
+
+            #region IOC
+
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             #endregion
 

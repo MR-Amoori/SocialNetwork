@@ -782,16 +782,6 @@
             "rid": "win"
           }
         }
-      },
-      "SocialNetwork.DataLayer/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/SocialNetwork.DataLayer.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/SocialNetwork.DataLayer.dll": {}
-        }
       }
     }
   },
@@ -2013,11 +2003,6 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "SocialNetwork.DataLayer/1.0.0": {
-      "type": "project",
-      "path": "../SocialNetwork.DataLayer/SocialNetwork.DataLayer.csproj",
-      "msbuildProject": "../SocialNetwork.DataLayer/SocialNetwork.DataLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2025,8 +2010,7 @@
       "Microsoft.EntityFrameworkCore >= 6.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.10",
-      "Microsoft.EntityFrameworkCore.Tools >= 6.0.10",
-      "SocialNetwork.DataLayer >= 1.0.0"
+      "Microsoft.EntityFrameworkCore.Tools >= 6.0.10"
     ]
   },
   "packageFolders": {
@@ -2055,11 +2039,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "D:\\Projects\\C#\\SocialNetwork\\SocialNetwork.DataLayer\\SocialNetwork.DataLayer.csproj": {
-              "projectPath": "D:\\Projects\\C#\\SocialNetwork\\SocialNetwork.DataLayer\\SocialNetwork.DataLayer.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
