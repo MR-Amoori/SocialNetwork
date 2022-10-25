@@ -30,5 +30,8 @@ namespace SocialNetwork.Context
 
 
         public DbSet<SocialNetwork.DataLayer.ViewModels.Account.RegisterViewModel> RegisterViewModel { get; set; }
+
+
+        public DbSet<SocialNetwork.DataLayer.ViewModels.Account.LoginViewModel> LoginViewModel { get; set; }
     }
 }

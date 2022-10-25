@@ -9,11 +9,13 @@ namespace SocialNetwork.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IUserRepository _repository;
 
-        public AccountController(UserManager<IdentityUser> userManager, IUserRepository repository)
+        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IUserRepository repository)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
             _repository = repository;
         }
 
@@ -21,12 +23,21 @@ namespace SocialNetwork.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             if (ModelState.IsValid)
             {
@@ -78,11 +89,64 @@ namespace SocialNetwork.Controllers
 
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string? returnUrl)
         {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewData["returnUrl"] = returnUrl;
+
             return View();
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl)
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, true);
+
+                if (result.Succeeded)
+                {
+                    if (!String.IsNullOrEmpty(returnUrl))
+                    {
+                        if (Url.IsLocalUrl(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (result.IsLockedOut)
+                {
+                    ViewData["ErrorMessage"] = "You have failed 5 times. Try after 15 minutes.";
+                    return View(model);
+                }
+
+
+                ModelState.AddModelError("", "The password or username is incorrect");
+                return View(model);
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Signout()
+        {
+            _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
 
     }
