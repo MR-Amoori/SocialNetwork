@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SocialNetwork.Context;
 using SocialNetwork.DataLayer.Repositories;
@@ -29,6 +30,15 @@ namespace SocialNetwork
 
             #endregion
 
+            #region Identity
+
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<SocialContext>()
+                .AddDefaultTokenProviders();
+
+            #endregion
+
+
 
             var app = builder.Build();
 
@@ -45,6 +55,7 @@ namespace SocialNetwork
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

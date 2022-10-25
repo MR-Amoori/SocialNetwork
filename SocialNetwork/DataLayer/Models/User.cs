@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SocialNetwork.DataLayer.Models
 {
@@ -28,7 +29,7 @@ namespace SocialNetwork.DataLayer.Models
         [MaxLength(20)]
         public string FullName { get; set; }
 
-        [Required]
+        [AllowNull]
         [MaxLength(250)]
         public string Biography { get; set; }
 
