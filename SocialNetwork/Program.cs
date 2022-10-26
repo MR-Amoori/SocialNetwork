@@ -17,7 +17,7 @@ namespace SocialNetwork
             #region Context
 
             var connectionStringLocalHost = builder.Configuration
-                .GetConnectionString("LocalHostConnection");
+                .GetConnectionString("LocalHostConnection2");
 
             builder.Services.AddDbContext<SocialContext>(x => x.UseSqlServer(connectionStringLocalHost));
 
@@ -28,6 +28,7 @@ namespace SocialNetwork
             builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             #endregion
+
 
 
             var app = builder.Build();

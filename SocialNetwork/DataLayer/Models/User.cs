@@ -9,7 +9,7 @@ namespace SocialNetwork.DataLayer.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [MaxLength(20)]
         public string UserName { get; set; }
 
         [Required]
@@ -18,18 +18,18 @@ namespace SocialNetwork.DataLayer.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8}$",
+        [RegularExpression(@"^(?=.*[a-Z]).{5}$",
          ErrorMessage = "Password must meet requirements")]
         [MaxLength(15)]
         [MinLength(5)]
         public string Password { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(40)]
         public string FullName { get; set; }
 
-        [Required]
-        [MaxLength(250)]
+
+        [MaxLength(350)]
         public string Biography { get; set; }
 
         [Required]

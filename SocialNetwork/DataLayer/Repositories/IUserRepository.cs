@@ -10,6 +10,7 @@ namespace SocialNetwork.DataLayer.Repositories
         public bool UserExists(int userId);
         public bool UserEmailExists(string email);
         public bool UserNameExists(string username);
+        public bool UserNameAndEmailExists(string username, string email);
         public bool AddUser(User user);
         public bool UpdateUser(User user);
         public bool DeleteUser(int userId);
