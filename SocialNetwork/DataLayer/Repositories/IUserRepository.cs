@@ -2,11 +2,12 @@
 
 namespace SocialNetwork.DataLayer.Repositories
 {
-    internal interface IUserRepository
+    public interface IUserRepository
     {
         public User GetUserById(int userId);
         public User GetUserByUsername(string username);
         public User GetUserByEmail(string email);
+        public User GetUserForLogin(string email, string password);
         public bool UserExists(int userId);
         public bool UserEmailExists(string email);
         public bool UserNameExists(string username);
@@ -15,5 +16,6 @@ namespace SocialNetwork.DataLayer.Repositories
         public bool UpdateUser(User user);
         public bool DeleteUser(int userId);
         public bool DeleteUser(User user);
+        public void Save();
     }
 }

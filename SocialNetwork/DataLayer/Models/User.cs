@@ -18,8 +18,6 @@ namespace SocialNetwork.DataLayer.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[a-Z]).{5}$",
-         ErrorMessage = "Password must meet requirements")]
         [MaxLength(15)]
         [MinLength(5)]
         public string Password { get; set; }
@@ -31,6 +29,8 @@ namespace SocialNetwork.DataLayer.Models
 
         [MaxLength(350)]
         public string Biography { get; set; }
+
+        public string ImageProfile { get; set; }
 
         [Required]
         public DateTime CreateDateAccount { get; set; }

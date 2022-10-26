@@ -69,6 +69,17 @@ namespace SocialNetwork.DataLayer.Services
             return _context.Users.Where(u => !u.IsDeletedAccount).FirstOrDefault(u => u.UserName == username);
         }
 
+        public User GetUserForLogin(string email, string password)
+        {
+            return _context.Users.Where(u => !u.IsDeletedAccount)
+                .SingleOrDefault(u => u.Email.ToLower() == email.ToLower() && u.Password == password);
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
         public bool UpdateUser(User user)
         {
             try
@@ -84,7 +95,7 @@ namespace SocialNetwork.DataLayer.Services
 
         public bool UserEmailExists(string email)
         {
-            return _context.Users.Where(u => !u.IsDeletedAccount).Any(u => u.Email == email);
+            return _context.Users.Where(u => !u.IsDeletedAccount).Any(u => u.Email.ToLower() == email.ToLower());
         }
 
         public bool UserExists(int userId)
@@ -94,12 +105,12 @@ namespace SocialNetwork.DataLayer.Services
 
         public bool UserNameAndEmailExists(string username, string email)
         {
-            return _context.Users.Where(u => !u.IsDeletedAccount).Any(u => u.Email == email || u.UserName == username);
+            return _context.Users.Where(u => !u.IsDeletedAccount).Any(u => u.Email.ToLower() == email.ToLower() || u.UserName.ToLower() == username.ToLower());
         }
 
         public bool UserNameExists(string username)
         {
-            return _context.Users.Where(u => !u.IsDeletedAccount).Any(u => u.UserName == username);
+            return _context.Users.Where(u => !u.IsDeletedAccount).Any(u => u.UserName.ToLower() == username.ToLower());
         }
     }
 }
