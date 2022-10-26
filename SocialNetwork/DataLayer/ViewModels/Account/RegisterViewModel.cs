@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace SocialNetwork.DataLayer.ViewModels.Account
 {
@@ -9,10 +10,12 @@ namespace SocialNetwork.DataLayer.ViewModels.Account
 
         [Required]
         [StringLength(50)]
+        [Remote(action: "IsUsernameInUse", controller: "Account")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
+        [Remote(action: "IsEmailInUse", controller: "Account")]
         public string Email { get; set; }
 
         [Required]

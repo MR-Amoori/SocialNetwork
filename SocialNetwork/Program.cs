@@ -28,15 +28,35 @@ namespace SocialNetwork
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+            #region Email Sender
+
+            builder.Services.AddScoped<IMessageSenderRepository, MessageSenderRepository>();
+
+            #endregion
+
             #endregion
 
             #region Identity
 
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 5;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredUniqueChars = 0;
+
+                options.User.RequireUniqueEmail = true;
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+            })
                 .AddEntityFrameworkStores<SocialContext>()
                 .AddDefaultTokenProviders();
 
             #endregion
+
 
 
 

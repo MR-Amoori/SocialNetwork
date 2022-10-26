@@ -28,20 +28,20 @@
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item mb-lg-auto">
-                                <form asp-action="Signout" asp-controller="Account" method="post">
-                                   <input type="submit" value="Logout" class="nav-link text-dark" />
-                                </form>
-                            </li>
+                                <li class="nav-item mb-lg-auto">
+                                    <form asp-action="Signout" asp-controller="Account" method="post">
+                                       <input type="submit" value="Logout" class="nav-link text-dark" />
+                                    </form>
+                                </li>
                         }
                         else
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Signin</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Signup</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Signin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Signup</a>
+                            </li>
                         }
 
                     </ul>
@@ -51,6 +51,24 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (ViewData["EmailConfrim"] != null)
+            {
+                <div class="alert alert-success">
+                    <p>
+                        @ViewData["EmailConfrim"]
+                    </p>
+                </div>
+            }
+
+            @if (ViewData["SendEmailConfrimation"] != null)
+            {
+                <div class="alert alert-success">
+                    <p>
+                        @ViewData["SendEmailConfrimation"]
+                    </p>
+                </div>
+            }
+
             @RenderBody()
         </main>
     </div>
