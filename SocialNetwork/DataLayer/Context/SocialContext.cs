@@ -2,7 +2,6 @@
 using SocialNetwork.DataLayer.Models;
 using SocialNetwork.DataLayer.ViewModels;
 
-
 namespace SocialNetwork.Context
 {
     public class SocialContext : DbContext
@@ -24,6 +23,7 @@ namespace SocialNetwork.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<LoginViewModel>().HasNoKey();
 
             base.OnModelCreating(modelBuilder);
         }
