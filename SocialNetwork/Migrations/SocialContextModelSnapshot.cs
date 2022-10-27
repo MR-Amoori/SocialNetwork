@@ -169,7 +169,6 @@ namespace SocialNetwork.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Biography")
-                        .IsRequired()
                         .HasMaxLength(350)
                         .HasColumnType("nvarchar(350)");
 
@@ -178,7 +177,8 @@ namespace SocialNetwork.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -186,7 +186,6 @@ namespace SocialNetwork.Migrations
                         .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("ImageProfile")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeletedAccount")
@@ -211,7 +210,11 @@ namespace SocialNetwork.Migrations
                 {
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -239,7 +242,8 @@ namespace SocialNetwork.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("FullName")
                         .IsRequired()

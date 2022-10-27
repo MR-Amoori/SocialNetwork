@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SocialNetwork.DataLayer.Models
 {
@@ -14,6 +13,7 @@ namespace SocialNetwork.DataLayer.Models
 
         [Required]
         [DataType(DataType.EmailAddress)]
+        [MaxLength(150)]
         public string Email { get; set; }
 
         [Required]
@@ -28,14 +28,13 @@ namespace SocialNetwork.DataLayer.Models
 
 
         [MaxLength(350)]
-        public string Biography { get; set; }
+        public string? Biography { get; set; }
 
-        public string ImageProfile { get; set; }
+        public string? ImageProfile { get; set; }
 
         [Required]
         public DateTime CreateDateAccount { get; set; }
 
-        [DefaultValue(false)]
         public bool IsDeletedAccount { get; set; }
 
 

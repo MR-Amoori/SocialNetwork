@@ -12,8 +12,8 @@ using SocialNetwork.Context;
 namespace SocialNetwork.Migrations
 {
     [DbContext(typeof(SocialContext))]
-    [Migration("20221026172514_Repaier2-User_Mig")]
-    partial class Repaier2User_Mig
+    [Migration("20221027074515_Init-Datebase_Mig")]
+    partial class InitDatebase_Mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -171,7 +171,6 @@ namespace SocialNetwork.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Biography")
-                        .IsRequired()
                         .HasMaxLength(350)
                         .HasColumnType("nvarchar(350)");
 
@@ -180,7 +179,8 @@ namespace SocialNetwork.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -188,7 +188,6 @@ namespace SocialNetwork.Migrations
                         .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("ImageProfile")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeletedAccount")
@@ -207,6 +206,65 @@ namespace SocialNetwork.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SocialNetwork.DataLayer.ViewModels.LoginViewModel", b =>
+                {
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<bool>("RememberMe")
+                        .HasColumnType("bit");
+
+                    b.ToTable("LoginViewModel");
+                });
+
+            modelBuilder.Entity("SocialNetwork.DataLayer.ViewModels.RegisterViewModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ConfrimPassword")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RegisterViewModel");
                 });
 
             modelBuilder.Entity("SocialNetwork.DataLayer.Models.Comment", b =>

@@ -1,25 +1,26 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace SocialNetwork.Migrations
 {
-    public partial class CreatingInitialModels_Mig : Migration
+    public partial class InitDatebase_Mig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Biography = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Biography = table.Column<string>(type: "nvarchar(350)", maxLength: 350, nullable: true),
+                    ImageProfile = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDateAccount = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeletedAccount = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -174,6 +175,12 @@ namespace SocialNetwork.Migrations
 
             migrationBuilder.DropTable(
                 name: "Likes");
+
+            migrationBuilder.DropTable(
+                name: "LoginViewModel");
+
+            migrationBuilder.DropTable(
+                name: "RegisterViewModel");
 
             migrationBuilder.DropTable(
                 name: "Posts");

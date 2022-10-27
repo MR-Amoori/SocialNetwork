@@ -90,19 +90,19 @@ namespace SocialNetwork.Controllers
         #region Login
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl)
         {
+            ViewData["returnUrl"] = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl)
         {
             if (ModelState.IsValid)
             {
 
                 var user = _repository.GetUserForLogin(model.Email, model.Password);
-
 
                 if (user == null)
                 {
@@ -135,6 +135,9 @@ namespace SocialNetwork.Controllers
                     };
 
                     await HttpContext.SignInAsync(principal, properties);
+
+                    returnUrl = String.IsNullOrEmpty(returnUrl) ? "/" : returnUrl;
+                    return Redirect(returnUrl);
                 }
             }
 

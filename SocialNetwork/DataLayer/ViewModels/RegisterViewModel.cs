@@ -18,6 +18,7 @@ namespace SocialNetwork.DataLayer.ViewModels
         [Required]
         [DataType(DataType.EmailAddress)]
         [Remote("VerifyEmail", "Account")]
+        [MaxLength(150)]
         public string Email { get; set; }
 
         [Required]
