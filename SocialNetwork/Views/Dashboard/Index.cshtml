@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Post>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Dashbord</h1>
+<h3>@User.Identity.GetFullName()</h3>
+<hr />
+
+@if (Model != null)
+{
+    
+}
+else
+{
+    <a asp-action="AddPost" asp-controller="Dashboard" class="btn btn-success">Add Post</a>
+}
+
