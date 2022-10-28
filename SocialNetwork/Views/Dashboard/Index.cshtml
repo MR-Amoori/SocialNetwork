@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Post>
+﻿@model PostViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,7 +9,51 @@
 
 @if (Model != null)
 {
-    
+    foreach (var item in Model.Posts)
+    {
+         <div class="card border">
+                     <div class="card-body">
+                        <h5 class="card-title">@item.PostTitle</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><a asp-action="UserDev" asp-controller="Home" asp-route-Id="@item.UserId"> @("@"+item.User.UserName) </a> </h6>
+                        <p class="card-text">@item.PostDescription</p>
+                        <a asp-action="LikePost" asp-controller="Dashboard" asp-route-postId="@item.PostId" asp-route-likerId="@User.Identity.GetUserId()" class="card-link"><img src="~/css/like-button-icon.svg" width="30px" /></a>
+                            <b>Comments : </b> 
+                    </div>
+                 
+           @if (item.comments != null)
+            {
+              @foreach (var comment in item.comments)
+              {
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted"><a asp-action="UserDev" asp-controller="Dashboard" asp-route-Id="@comment.UserIdFrom"> @("@"+comment.UserNameFrom) </a> </h6>
+                        <p class="card-text">@comment.CommentText</p>
+                    </div>
+                </div>
+              }
+            }
+              </div>
+
+                                       <form asp-action="AddComment" asp-controller="Dashboard" asp-route-path="@($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Comment.CommentText" class="control-label">Text: </label>
+                        <input asp-for="Comment.CommentText" class="form-control" />
+                        <span asp-validation-for="Comment.CommentText" class="text-danger"></span>
+                    </div>
+                            <br />
+                        <input type="hidden" asp-for="Comment.UserNameTo" value="@Model.Posts.FirstOrDefault().User.UserName" />
+                        <input type="hidden" asp-for="Comment.UserIdTo" value="@Model.Posts.FirstOrDefault().User.Id" />
+                        <input type="hidden" asp-for="Comment.UserNameFrom" value="@User.Identity.GetUserName()" />
+                                <input type="hidden" asp-for="Comment.UserIdFrom" value="@(int.Parse(User.Identity.GetUserId()))" />
+                        <input type="hidden" asp-for="Comment.PostId" value="@Model.Posts.FirstOrDefault().PostId" />
+                        
+              <div class="form-group">
+                <input type="submit" value="Add Comment" class="btn btn-success" />
+            </div>
+            </form>
+    }
+       
 }
 else
 {

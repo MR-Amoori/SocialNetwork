@@ -19,6 +19,13 @@ namespace SocialNetwork
             return claim?.Value ?? string.Empty;
         }
 
+        public static string GetUserId(this IIdentity identity)
+        {
+            ClaimsIdentity claimsIdentity = identity as ClaimsIdentity;
+            Claim claim = claimsIdentity?.FindFirst("UserId");
+            return claim?.Value ?? string.Empty;
+        }
+
         public static string GetUserName(this IIdentity identity)
         {
             ClaimsIdentity claimsIdentity = identity as ClaimsIdentity;

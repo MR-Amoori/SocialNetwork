@@ -75,6 +75,11 @@ namespace SocialNetwork.DataLayer.Services
                 .SingleOrDefault(u => u.Email.ToLower() == email.ToLower() && u.Password == password);
         }
 
+        public string GetUserNameById(int userId)
+        {
+            return _context.Users.Where(u => !u.IsDeletedAccount).FirstOrDefault(u => u.Id == userId).UserName;
+        }
+
         public void Save()
         {
             _context.SaveChanges();

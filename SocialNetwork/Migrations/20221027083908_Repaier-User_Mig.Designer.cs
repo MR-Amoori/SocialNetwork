@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialNetwork.Context;
 
@@ -11,9 +12,10 @@ using SocialNetwork.Context;
 namespace SocialNetwork.Migrations
 {
     [DbContext(typeof(SocialContext))]
-    partial class SocialContextModelSnapshot : ModelSnapshot
+    [Migration("20221027083908_Repaier-User_Mig")]
+    partial class RepaierUser_Mig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +58,7 @@ namespace SocialNetwork.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("SocialNetwork.DataLayer.Models.Following", b =>
@@ -78,7 +80,7 @@ namespace SocialNetwork.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Followings", (string)null);
+                    b.ToTable("Followings");
                 });
 
             modelBuilder.Entity("SocialNetwork.DataLayer.Models.Followre", b =>
@@ -100,7 +102,7 @@ namespace SocialNetwork.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Followres", (string)null);
+                    b.ToTable("Followres");
                 });
 
             modelBuilder.Entity("SocialNetwork.DataLayer.Models.Like", b =>
@@ -122,7 +124,7 @@ namespace SocialNetwork.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Likes", (string)null);
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("SocialNetwork.DataLayer.Models.Post", b =>
@@ -159,7 +161,7 @@ namespace SocialNetwork.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("SocialNetwork.DataLayer.Models.User", b =>
@@ -205,7 +207,7 @@ namespace SocialNetwork.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("SocialNetwork.DataLayer.ViewModels.LoginViewModel", b =>
@@ -226,7 +228,7 @@ namespace SocialNetwork.Migrations
                     b.Property<bool>("RememberMe")
                         .HasColumnType("bit");
 
-                    b.ToTable("LoginViewModel", (string)null);
+                    b.ToTable("LoginViewModel");
                 });
 
             modelBuilder.Entity("SocialNetwork.DataLayer.ViewModels.RegisterViewModel", b =>
@@ -264,7 +266,7 @@ namespace SocialNetwork.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RegisterViewModel", (string)null);
+                    b.ToTable("RegisterViewModel");
                 });
 
             modelBuilder.Entity("SocialNetwork.DataLayer.Models.Comment", b =>

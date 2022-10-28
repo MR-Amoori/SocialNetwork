@@ -8,6 +8,7 @@ namespace SocialNetwork.DataLayer.Repositories
         public User GetUserByUsername(string username);
         public User GetUserByEmail(string email);
         public User GetUserForLogin(string email, string password);
+        public string GetUserNameById(int userId);
         public bool UserExists(int userId);
         public bool UserEmailExists(string email);
         public bool UserNameExists(string username);

@@ -123,6 +123,7 @@ namespace SocialNetwork.Controllers
                         new Claim(ClaimTypes.Email, user.Email),
                         new Claim(ClaimTypes.Name , user.UserName),
                         new Claim("FullName",user.FullName),
+                        new Claim("UserId",user.Id.ToString()),
                     };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

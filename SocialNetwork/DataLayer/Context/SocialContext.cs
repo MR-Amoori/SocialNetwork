@@ -37,5 +37,10 @@ namespace SocialNetwork.Context
 
 
         public DbSet<SocialNetwork.DataLayer.ViewModels.LoginViewModel> LoginViewModel { get; set; }
+
+
+
+
+        public DbSet<SocialNetwork.DataLayer.ViewModels.AddPostViewModel> AddPostViewModel { get; set; }
     }
 }

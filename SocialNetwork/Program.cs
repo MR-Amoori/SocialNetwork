@@ -27,6 +27,7 @@ namespace SocialNetwork
             #region IOC
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IPostRepository, PostRepository>();
 
             #endregion
 

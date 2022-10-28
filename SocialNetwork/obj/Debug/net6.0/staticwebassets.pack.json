@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\SocialNetwork.bundle.scp.css"
     },
     {
+      "Id": "D:\\Projects\\C#\\SocialNetwork\\SocialNetwork\\wwwroot\\css\\like-button-icon.svg",
+      "PackagePath": "staticwebassets\\css\\like-button-icon.svg"
+    },
+    {
       "Id": "D:\\Projects\\C#\\SocialNetwork\\SocialNetwork\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
