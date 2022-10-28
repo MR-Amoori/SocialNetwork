@@ -66,7 +66,7 @@ namespace SocialNetwork.DataLayer.Services
         public IEnumerable<Post> GetPostsByUserId(int userId)
         {
             var post = _context.Posts.Include(p => p.User)
-                .Include(p => p.comments).Where(p => !p.IsDeletedPost)
+                .Include(p => p.comments).Include(p => p.Likes).Where(p => !p.IsDeletedPost)
                 .Where(p => p.User.Id == userId).ToList();
             return post;
         }

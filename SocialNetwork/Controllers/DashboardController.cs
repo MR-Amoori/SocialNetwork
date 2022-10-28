@@ -10,10 +10,12 @@ namespace SocialNetwork.Controllers
     public class DashboardController : Controller
     {
         private readonly IPostRepository _repository;
+        private readonly IUserRepository _userRepository;
 
-        public DashboardController(IPostRepository repository)
+        public DashboardController(IPostRepository repository, IUserRepository userRepository)
         {
             _repository = repository;
+            _userRepository = userRepository;
         }
 
         public IActionResult Index()
@@ -31,14 +33,14 @@ namespace SocialNetwork.Controllers
 
         public IActionResult UserDev(int Id)
         {
-            var user = _repository.GetPostsByUserId(Id);
-            if (user == null)
+            var user = _userRepository.GetUserById(Id);
+            if (user != null)
             {
-                return View("Error");
+                return View(user);
             }
             else
             {
-                return View(user);
+                return NotFound();
             }
         }
 
@@ -71,16 +73,20 @@ namespace SocialNetwork.Controllers
             return View(post);
         }
 
-
+        //
         public IActionResult Details(int postId)
         {
             return View();
         }
-
+        //
         public IActionResult Delete(int postId)
         {
             return View();
         }
+
+
+
+        #region Add Post
 
         [HttpGet]
         public IActionResult AddPost()
@@ -104,6 +110,8 @@ namespace SocialNetwork.Controllers
 
             return RedirectToAction("Index", "Dashboard");
         }
+
+        #endregion
 
     }
 }

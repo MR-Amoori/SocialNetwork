@@ -61,7 +61,8 @@ namespace SocialNetwork.DataLayer.Services
 
         public User GetUserById(int userId)
         {
-            return _context.Users.Where(u => !u.IsDeletedAccount).FirstOrDefault(u => u.Id == userId);
+            var user = _context.Users.Where(u => !u.IsDeletedAccount).FirstOrDefault(u => u.Id == userId);
+            return user;
         }
 
         public User GetUserByUsername(string username)

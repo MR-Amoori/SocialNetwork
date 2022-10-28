@@ -9,15 +9,38 @@
 
 @if (Model != null)
 {
+    if (Model.Posts.Count() > 1)
+    {
+        foreach (var item in Model.Posts)
+        {
+            <div class="card border">
+                <div class="card-body">
+                    <h5 class="card-title text-info">@item.PostTitle</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><a asp-action="UserDev" asp-controller="Dashboard" asp-route-Id="@item.UserId"> @(
+                "@" + item.User.UserName
+                ) </a> </h6>
+                    <p class="card-text">@item.PostDescription</p>
+                    <a asp-action="LikePost" asp-controller="Dashboard" asp-route-postId="@item.PostId" asp-route-likerId="@User.Identity.GetUserId()" class="card-link"><img src="~/css/like-button-icon.svg" width="30px" /> @if (item.Likes.Count() > 0) {<span>@item.Likes.Count()</span>  } </a>
+                    <br />
+                    <a asp-action="Post" asp-controller="Dashboard" asp-route-postId="@item.PostId">Comments <span>@item.comments.Count()</span></a>
+                </div>
+            </div>
+        }
+    }
+
     foreach (var item in Model.Posts)
     {
          <div class="card border">
                      <div class="card-body">
-                        <h5 class="card-title">@item.PostTitle</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><a asp-action="UserDev" asp-controller="Home" asp-route-Id="@item.UserId"> @("@"+item.User.UserName) </a> </h6>
+                        <h5 class="card-title text-info">@item.PostTitle</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><a asp-action="UserDev" asp-controller="Dashboard" asp-route-Id="@item.UserId"> @("@" + item.User.UserName) </a> </h6>
                         <p class="card-text">@item.PostDescription</p>
-                        <a asp-action="LikePost" asp-controller="Dashboard" asp-route-postId="@item.PostId" asp-route-likerId="@User.Identity.GetUserId()" class="card-link"><img src="~/css/like-button-icon.svg" width="30px" /></a>
-                            <b>Comments : </b> 
+                <a asp-action="LikePost" asp-controller="Dashboard" asp-route-postId="@item.PostId" asp-route-path="@($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")" asp-route-likerId="@User.Identity.GetUserId()" class="card-link"><img src="~/css/like-button-icon.svg" width="30px" /> @if (item.Likes.Count() > 0) {<span>@item.Likes.Count()</span>  } </a>
+                @if (item.comments != null)
+                {
+                    <br />
+                            <b>Comments : <span>@item.comments.Count()</span></b> 
+                }
                     </div>
                  
            @if (item.comments != null)
@@ -34,7 +57,7 @@
             }
               </div>
 
-                                       <form asp-action="AddComment" asp-controller="Dashboard" asp-route-path="@($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")">
+                    <form asp-action="AddComment" asp-controller="Dashboard" asp-route-path="@($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Comment.CommentText" class="control-label">Text: </label>
